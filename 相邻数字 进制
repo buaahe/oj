@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+ long b2ten(char *x,int b){
+ 	int ret=0;
+ 	int len=strlen(x);
+ 	for(int i=0;i<len;++i){
+ 		if(x[i]-'0'>=b) return -1;
+ 		ret*=b;
+		 ret+=x[i]-'0';
+ 	}
+ 	return (long)ret;
+ }
+ int main(){
+ 	int ncase,i;
+ 	char p[8],q[8],r[8];
+ 	long pl,ql,rl;
+ 	scanf("%d",&ncase);
+ 	while(ncase--){
+ 		scanf("%s %s %s",p,q,r);
+ 		for(i=2;i<=16;i++){
+ 			pl=b2ten(p,i);
+ 			ql=b2ten(q,i);
+ 			rl=b2ten(r,i);
+ 			if(pl*ql==rl) {
+ 			 printf("%d\n",i); break;
+			 }
+ 		}
+ 		if(i==17) printf("0\n");
+ 	} 
+ }
