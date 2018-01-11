@@ -1,0 +1,10 @@
+#include<stdio.h>
+int funt(int n){
+	if(n/8!=0)
+		funt(n/8);
+	putchar('0'+n%8);
+}
+int main(){
+	int b=76;
+	funt(b);
+} 
