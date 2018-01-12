@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<stdlib.h> 
+int sco[300][5];
+int compare(const void* b,const void* a){
+
+	if(((int*)b)[3]!=((int*)a)[3]) 
+		return ((int*)a)[3]-((int*)b)[3];
+	else{
+		if(((int*)b)[0]!=((int*)a)[0]) {
+		
+			return ((int*)a)[0]-((int*)b)[0];
+		}	
+		else 
+			if(((int*)b)[4]!=((int*)a)[4]) return ((int*)b)[4]-((int*)a)[4];
+	}
+}
+int main(){
+	int n;
+	scanf("%d",&n);
+	int sco[n][5];
+	for(int i=0;i<n;++i){
+		scanf("%d %d %d",&sco[i][0],&sco[i][1],&sco[i][2]);
+		sco[i][3]=sco[i][1]+sco[i][2]+sco[i][0];
+		sco[i][4]=i+1;	
+	}
+	qsort(sco,n,20,compare);
+	for(int i=0;i<5;++i){
+		printf("%d %d\n",sco[i][4],sco[i][0]+sco[i][1]+sco[i][2]);
+	}
+} 
