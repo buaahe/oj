@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<string.h>
+int lin(char m[]){
+	char map[27]="VWXYZABCDEFGHIJKLMNOPQRSTU";
+	char ed[201];
+	int len;
+	gets(m);
+	len=strlen(m);
+	for(int i=0;i<len;i++)
+		if(m[i]>='A'&&m[i]<='Z') 
+			m[i]=map[m[i]-'A'];
+			
+		gets(ed);
+		
+	
+	return 0;
+}
+int main(){
+	char mes[201];
+	gets(mes);
+	while(strcmp(mes,"START")==0){
+		lin(mes);
+		printf("%s\n",mes);
+		gets(mes);
+	}
+	return 0;
+} 
