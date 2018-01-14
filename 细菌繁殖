@@ -1,0 +1,24 @@
+#include<stdio.h>
+#include<math.h> 
+int finday(int a,int b,int d,int e){
+	int map[13]={0,31,28,31,30,31,30,31,31,30,31,30,31};
+	if(a==d) return (e-b);
+	else{
+		int temp=0;
+		for(int i=a+1;i<=d-1;i++)
+			temp=map[i]+temp;
+		return temp+map[a]-b+e;
+	}
+}
+int main(){
+	int n;
+	int a,b,c,d,e,day,mun;
+	scanf("%d",&n);
+	while(n--){
+		scanf("%d %d %d %d %d",&a,&b,&c,&d,&e);
+		day=finday(a,b,d,e);
+		mun=c*pow(2,day);
+		printf("%d\n",mun);
+	}
+	
+}
