@@ -1,0 +1,23 @@
+#include<stdio.h>
+int maxd(int a,int b){
+	return a>b?a:b;
+}
+int mind(int a,int b){
+	return a<b?a:b;
+}
+int main(){
+
+	int n,len,ant,loc;
+	scanf("%d",&n);
+	while(n--){
+		scanf("%d %d",&len,&ant);
+		int mini=0;
+		int maxi=0;
+		for(int i=0;i<ant;i++){
+			scanf("%d",&loc);
+			maxi=maxd(maxi,maxd(loc,len-loc));
+			mini=maxd(mini,mind(loc,len-loc));
+		}
+		printf("%d %d\n",mini,maxi); 
+	} 
+}
