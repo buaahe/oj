@@ -1,0 +1,23 @@
+#include<stdio.h>
+ int type(int m){ //判断第 m 年是否是闰年，是则返回 1，否则返回 0。
+ if(m % 4 != 0 || (m % 100 == 0 && m % 400 != 0))  return 0; //不是闰年
+ else return 1; // 是闰年
+ }
+int main(){
+	char weekmap[7][10]={"Saturday", "Sunday", "Monday", "Tuesday", "Wednesday", "Thursday",
+"Friday"};
+	int monmap[2][13]={31,28,31,30,31,30,31,31,30,31,30,31,31,29,31,30,31,30,31,31,30,31,30,31};
+	int yearmap[2]={365,366};
+	int n=1750;
+	scanf("%d",&n);
+	int year,i,j;
+	while(n!=-1){
+		int wee=n%7;
+		for(i=2000;n>=yearmap[type(i)];i++)
+			n=n-yearmap[type(i)];
+		for(j=0;n>=monmap[type(i)][j];j++)
+			n=n-monmap[type(i)][j];
+		printf("%d-%02d-%02d %s\n",i,j+1,n+1,weekmap[wee]);
+		scanf("%d",&n);
+	}
+}
