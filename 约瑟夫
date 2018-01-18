@@ -1,0 +1,26 @@
+#include<stdio.h>
+int main(){
+	int n,m;
+	int li[300];
+	scanf("%d %d",&n,&m);
+	while(n){
+		for(int i=0;i<n;i++) li[i]=1;
+		int j=n-1;
+		int k=0;
+		while(j--){
+			int l=0;
+			while(l<m-1){
+				while(li[k]==0) k=(k+1)%n;
+				l++;
+				k=(k+1)%n;
+			}
+			while(li[k]==0) k=(k+1)%n;
+			li[k]=0;
+			
+		}
+		for(int p=0;p<n;p++) {
+			if(li[p]!=0)
+				printf("%d\n",p+1);}
+		scanf("%d %d",&n,&m);
+	}
+}
