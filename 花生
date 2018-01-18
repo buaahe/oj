@@ -1,0 +1,34 @@
+#include<stdio.h>
+#include<math.h>
+int main(){
+	int m,n,M,N,K;
+	scanf("%d%d%d",&M,&N,&K);
+	int fie[50][50];
+	for(m=1;m<=M;m++){
+		for(n=1;n<=N;n++){
+			scanf("%d",&fie[m][n]);
+		}
+	}
+	int totime=0,peanut=0;
+	int i1=0,j1;
+	while(totime<K){  
+		int max=-1,i2,j2;
+		for(m=1;m<=M;m++)
+			for(n=1;n<=N;n++)
+				if(fie[m][n]>max) {
+					max=fie[m][n];
+					i2=m;j2=n;
+				}
+		if(max==0) break;
+		if(i1==0) j1=j2;
+		if(totime+1+abs(i1-i2)+abs(j1-j2)+i2<=K){
+		
+			totime+=1+abs(i1-i2)+abs(j1-j2);
+			i1=i2;j1=j2;
+			peanut+=fie[i2][j2];
+			fie[i2][j2]=0;
+		}
+		else break;
+	} 
+	printf("%d\n",peanut);
+}
