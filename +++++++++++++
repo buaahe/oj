@@ -1,0 +1,64 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+	char a[301],b[301];
+	int c[302];
+	int i,j,k;
+	scanf("%s",a);
+	scanf("%s",b);
+	if(a[0]-'0'==0&&b[0]-'0'==0)
+		printf("%d",a[0]-'0');
+	else{
+		
+	i=strlen(a)-1;
+	j=strlen(b)-1;
+	for(k=301;k>-1;k--) c[k]=0;
+	k=301;
+	while(i>=0&&j>=0){
+		if(a[i]-'0'+b[j]-'0'+c[k]>9){
+			c[k]=c[k]+(a[i]-'0'+b[j]-'0')-10;
+			c[k-1]=c[k-1]+1;
+			k--;i--;j--;
+		}else{
+			c[k]=a[i]-'0'+b[j]-'0'+c[k];
+			k--;i--;j--;
+		}
+	}
+	if(i==-1&&j!=-1){
+		while(j>=0){
+			if(b[j]-'0'+c[k]>9){
+				c[k]+=(b[j]-'0')-10;
+				c[k-1]=c[k-1]+1;
+				k--;j--;
+			}else{
+				c[k]=b[j]-'0'+c[k];
+				k--;j--;
+			}
+		}
+	}else
+	if(i!=-1&&j==-1){
+		while(i>=0){
+		if(a[i]-'0'+c[k]>9){
+			c[k]+=(a[i]-'0')-10;
+			c[k-1]=c[k-1]+1;
+			k--;i--;
+		}else{
+			c[k]=a[i]-'0'+c[k];
+			k--;i--;
+		}}
+	}
+//	if(c[k]==0) {
+//		k++;
+		k=0;
+		while(c[k]==0) k++;
+		while(k<=301){
+			printf("%d",c[k]);
+			k++;
+		}}
+//	}else{
+	//	while(k<=201){
+	//		printf("%d",c[k]);
+	//		k++;
+	//	}
+//	}
+} 
