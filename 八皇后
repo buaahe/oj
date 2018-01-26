@@ -1,0 +1,32 @@
+	#include<stdio.h>
+	#include<math.h>
+	int n,b,i,j,num,k;
+	int qu[92][8],hang[8];//第i行的皇后在hang[i]列 
+	int f(int i){
+		int j,k;
+		if(i==8){
+			for(j=0;j<8;j++)
+				qu[num][j]=hang[j]+1;
+			num++;
+		}
+		for(j=0;j<8;j++){
+			for(k=0;k<i;k++){
+				if(hang[k]==j||abs(k-i)==abs(j-hang[k]))break;
+			}
+			if(k==i ){
+				hang[i]=j;
+				f(i+1);
+			}
+		}
+	} 
+	int main(){
+		num=0;
+		scanf("%d",&n);
+		f(0);
+		while(n--){
+			scanf("%d",&b);
+			for(j=0;j<8;j++) 
+				printf("%d",qu[b-1][j]);
+			printf("\n");
+		}
+	}
