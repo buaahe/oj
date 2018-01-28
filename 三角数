@@ -1,0 +1,25 @@
+#include<iostream>  
+#include<string>  
+#include <limits>  
+using namespace std;
+int N, D[110][110];
+int Max(int m,int n) {
+	if(m==N){
+		return D[m][n];
+	}
+	int sum1=Max(m+1,n);
+	int sum2=Max(m+1,n+1);
+	if(sum1>sum2)
+		return sum1+D[m][n];
+	return sum2+D[m][n];
+}
+
+int main() {
+	cin >> N;
+	for(int k=1;k<=N;k++){
+		for (int i = 1;i <= k;i++) {
+			cin >> D[k][i];
+		}
+	}
+	cout << Max(1, 1)<<endl;
+}
