@@ -1,0 +1,56 @@
+
+#include<iostream>
+#include<cstring>
+#include <stdlib.h>
+using namespace std;
+struct Node {
+	int X1;
+	int X2;
+	int H;
+};
+int Left[1005], Right[1005];
+int com(const void*e1,const void*e2){
+	Node *p1,*p2;
+	p1=(Node*)e1;
+	p2=(Node*)e2;
+	return p2->H-p1->H;
+}
+int DP_Recur(int X, int Y, int Max, int j, int N, Node P[])
+{
+	int i;
+	if (P[j].H == 0) return 0;
+	for (i = j + 1;i<=N+1;i++)
+		if (P[i].X1 <= X && X <= P[i].X2)
+			break;
+	if (Y - P[i].H>Max) return 20000;
+	if (P[i].H == 0) return Y;
+	if (Left[i] = 20000) Left[i] = DP_Recur(P[i].X1, P[i].H, Max, i, N+1, P);
+	if (Right[i] = 20000) Right[i] = DP_Recur(P[i].X2, P[i].H, Max, i, N+1, P);
+	int min = ((X - P[i].X1) + Left[i])<((P[i].X2 - X) + Right[i]) ? ((X - P[i].X1) + Left[i]) : ((P[i].X2 - X) + Right[i]);
+	return (Y - P[i].H) + min;
+}
+int main(){
+	int T ;
+	cin >> T;
+	while (T--)
+	{
+		int N = 0, X = 0, Y = 0, Max = 0;
+		cin >> N >> X >> Y >> Max;
+		Node P[1005];
+		int i = 0;
+		for(i=1;i<=N;i++) {
+			cin >> P[i].X1 >> P[i].X2 >> P[i].H;
+		}
+		qsort(P+1,N+1,sizeof(Node),com);
+		P[0].X1 = X;
+		P[0].X2 = X;
+		P[0].H = Y;
+		P[N+1].X1 = 0;
+		P[N+1].X2 = 20000;
+		P[N+1].H = 0;
+		memset(Left, 20000, sizeof(Left));
+		memset(Right, 20000, sizeof(Right));
+		cout << DP_Recur(X, Y, Max, 0, N, P) << endl;
+	}
+	return 0;
+}
