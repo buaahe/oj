@@ -1,0 +1,45 @@
+#include<stdio.h>
+struct Student{
+	char ID[20];
+	char name[50];
+	float score;
+	Student *next;
+};
+int main(){
+	Student *linkhead,*linktail,*student;
+	float avescore;
+	int totalscore;
+
+	linkhead=linktail=NULL;
+
+	while(1){
+		student=new Student;
+		scanf("%s%s%f", student->ID, student->name, &student->score);
+		if(student->score<0){
+			delete student;
+			break;
+		}
+		student->next=NULL;
+		if(linktail==NULL)
+			linkhead=linktail=student;
+		else{
+			linktail->next=student;
+			linktail=student;
+		}
+	}
+	avescore=0.0;
+	totalscore=0;
+	student=linkhead;
+	while(student!=NULL){
+		totalscore++;
+		avescore+=student->score;
+		student=student->next;
+	}
+	avescore=avescore/totalscore;
+	printf("课程平均成绩：%5.2f\n",avescore);
+	while(linkhead!=NULL){
+		student=linkhead;
+		linkhead=student->next;
+		delete student;
+	}
+}
