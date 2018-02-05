@@ -1,0 +1,50 @@
+#include<stdio.h>
+struct Student{
+	char ID[20];
+	char name[50];
+	float score;
+	Student *next;
+};
+struct StudentList{
+	Student *tail;
+	int totalStudents;
+	float totalScore;
+	int unqualifiedStudents;
+	Student *head;
+};
+int main(){
+	StudentList link;
+	Student *student;
+	float aveScore;
+
+	link.head=NULL;
+	link.tail=NULL;
+	link.totalScore=0;
+	link.totalStudents=0;
+	link.unqualifiedStudents=0;
+
+	while(1){
+		student=new Student;
+		scanf("%s%s%f",student->ID,student->name,&student->score);
+		if(student->score<0){
+			delete student;
+			break;
+		}
+		student->next=NULL;
+		if(link.head==NULL)
+			link.head=link.tail=student;
+		else{
+			link.tail->next=student;
+			link.tail=link.tail->next;
+		}
+		link.totalScore+=student->score;
+		link.totalStudents++;
+		if(student->score<60) link.unqualifiedStudents++;
+	}
+	while(link.head!=NULL){
+		student=link.head;
+		link.head=student->next;
+		delete student;
+	}
+	return 0;
+}
