@@ -1,0 +1,15 @@
+#include<stdio.h>
+int main(){
+	int n,a[550][550],sum=0,i,j,k=0;
+	scanf("%d",&n);
+	while(k<=n){
+		for(i=1;i<=500;i++){
+			for(j=1;j<=i;j++){
+				a[i][j]=i;
+				sum=sum+a[i][j];
+				k++;
+				if(k==n)	printf("%d",sum);
+			}
+		}
+	}
+}
