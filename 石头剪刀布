@@ -1,0 +1,27 @@
+#include<stdio.h>
+#include<math.h>
+#include<stdlib.h>
+int main(){
+	int i,j,n,Numa,Numb,na,nb,amap[110],bmap[110],a[110],b[110];
+	scanf("%d %d %d",&n,&na,&nb);
+	for(i=1;i<=na;i++) scanf("%d",&amap[i]);
+	for(i=1;i<=nb;i++) scanf("%d",&bmap[i]);
+	for(i=1;i<=n+na;i+=na){
+		for(j=0;j<na;j++){
+			a[i+j]=amap[j+1];
+		}
+	}
+	for(i=1;i<=n+nb;i+=nb){
+		for(j=0;j<nb;j++){
+			b[i+j]=bmap[j+1];
+		}
+	}
+	Numa=Numb=0;
+	for(i=1;i<=n;i++){
+		if((a[i]==0&&b[i]==2)||(a[i]==2&&b[i]==5)||(a[i]==5&&b[i]==0))Numa++;
+		else if((a[i]==5&&b[i]==2)||(a[i]==0&&b[i]==5)||(a[i]==2&&b[i]==0))Numb++;
+	}
+	if(Numa>Numb)printf("A");
+	else if(Numa==Numb)printf("draw");
+	else printf("B");
+}
