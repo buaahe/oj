@@ -1,0 +1,17 @@
+#include<stdio.h>
+int main(){
+	int x,i,j,y,a[110][110],b[110][110];
+	scanf("%d %d",&x,&y);
+	for(i=1;i<=x;i++){
+		for(j=1;j<=y;j++){
+			scanf("%d",&a[i][j]);
+			b[j][x+1-i]=a[i][j];
+		}
+	//	printf("\n");
+	}
+	for(i=1;i<=y;i++){
+		for(j=1;j<=x;j++)
+			printf("%d ",b[i][j]); 
+		printf("\n");
+	}
+}
