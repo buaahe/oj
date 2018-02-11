@@ -1,0 +1,44 @@
+#include<stdio.h>
+#define oo -1111
+int main(){
+	int x,i,j,y,a[110][110],b[110110];
+	scanf("%d %d",&x,&y);
+	for(i=1;i<=x;i++){
+		for(j=1;j<=y;j++){
+			scanf("%d",&a[i][j]);
+		}
+	}
+	for(i=0;i<=x+1;i++){
+		for(j=0;j<=y+1;j++)
+			if(i==0||j==0||i==x+1||j==y+1)
+				a[i][j]=oo;
+	}
+	printf("%d\n",a[1][1]);
+	a[1][1]=oo;
+	i=j=1;
+	int n=100100; 
+	while(n--){
+		while(a[i][j+1]!=oo){
+			printf("%d\n",a[i][j+1]);
+			a[i][j+1]=oo;
+			j++;
+		}
+		while(a[i+1][j]!=oo){
+			printf("%d\n",a[i+1][j]);
+			a[i+1][j]=oo;
+			i++;
+		}
+		while(a[i][j-1]!=oo){
+			printf("%d\n",a[i][j-1]);
+			a[i][j-1]=oo;
+			j--;
+		}
+		while(a[i-1][j]!=oo){
+			printf("%d\n",a[i-1][j]);
+			a[i-1][j]=oo;
+			i--;
+		}
+		if(a[i+1][j]==oo&&a[i-1][j]==oo&&a[i][j+1]==oo&&a[i][j-1]==oo)
+			break;
+	} 
+}
