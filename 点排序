@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<stdlib.h>
+typedef struct xy{
+	int x;
+	int y;
+	int z; 
+}xy;
+int com(const void*g,const void*h){
+	xy *m=(xy *)g;
+	xy *n=(xy *)h;
+	if(m->z!=n->z) return (m->z)-(n->z);
+	else if(m->x!=n->x) return m->x-n->x;
+	else if(m->y!=n->y) return m->y-n->y;
+}
+int main(){
+	xy a[110];
+	int x0,y0,n,i=0;
+	scanf("%d %d",&x0,&y0);
+	scanf("%d",&n);
+	int j=n;
+	while(j--){
+		scanf("%d %d",&a[i].x,&a[i].y);
+		a[i].z=(a[i].x-x0)*(a[i].x-x0)+(a[i].y-y0)*(a[i].y-y0);
+		i++;
+	}
+	qsort(a,n,sizeof(a[0]),com);
+	printf("(%d,%d)",a[0].x,a[0].y);
+	for(i=1;i<n;i++){
+		printf(", (%d,%d)",a[i].x,a[i].y);
+	}
+}
