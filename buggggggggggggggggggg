@@ -1,0 +1,31 @@
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+
+int com(const void*g,const void*h){
+	char* a=(char*)g;
+	char* b=(char*)h;
+	if(*a!=*b) return *a-*b;
+}
+int main(){
+	int ms,ns,len[25];
+	char m[25][25],ma[25][25],n[125],a[25]="************************";
+	int i,j,k;
+	scanf("%d%d",&ms,&ns);
+	for(j=1;j<=ms;j++){
+		gets(m[j]);
+	}
+	qsort(m,ms,sizeof(m[0]),com);
+	for(i=1;i<=ms;i++){
+		len[i]=strlen(m[i]);
+	}
+	for(i=0;i<ns;i++){
+		gets(n);
+		for(j=1;j<=ms;j++){
+			if(strstr(n,m[j])){
+				memcpy(strstr(n,m[j]),a,len[j]);
+			}
+		}
+		printf("%s\n",n);
+	}
+}
