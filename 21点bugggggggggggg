@@ -1,0 +1,45 @@
+#include<iostream>
+#include<stdio.h>
+#include<string.h>
+#include<stdlib.h>
+using namespace std;
+int main(){
+	int ns,ms,i,j,sun[3],sum[3],nbla1=0,nbla2=0,mbla1=0,mbla2=0;
+	char n[100],m[100];
+	cin>>ns>>endl;
+	sun[0]=0;sun[1]=0;sum[0]=0;sum[1]=0;
+	for(i=0;i<ns;i++){
+		cin>>n[i]>>endl;
+		if(n[i]=='A')                                   {	sun[0]+=1 ;sun[1]+=11;nbla1=1;continue;	}
+		if(n[i]=='J'||n[i]=='Q'||n[i]=='K'||n[i]==10)   {	sun[0]+=10;sun[1]+=10;nbla2=1;	}
+		else                                            {	sun[0]+=n[i]-'0';sun[1]+=n[i]-'0';	}
+	}
+	if(sun[1]>21&&sun[0]>21) sun[2]=sun[1];
+	else if(sun[1]>21&&sun[0]<=21) sun[2]=sun[0];
+	else if(sun[1]<21&&sun[0]<=21) sun[2]=sun[1];
+	else sun[2]=sun[1]>sun[0]?sun[1]:sun[0];
+	cin>>ms>>endl;
+	for(i=0;i<ms;i++){
+		cin>>m[i]>>endl;
+		if(m[i]=='A')         							{	sum[0]+=1;sum[1]+=11;mbla1=1;continue;	}
+		if(m[i]=='J'||m[i]=='Q'||m[i]=='K'||m[i]==10)   {	sum[0]+=10;sum[1]+=10;mbla2=1;	}
+		else											{	sum[0]+=m[i]-'0';sum[1]+=m[i]-'0';	}
+	}
+	if(sum[1]>21&&sum[0]>21)		sum[2]=sum[1];
+	else if(sum[1]>21&&sum[0]<=21)	sum[2]=sum[0];
+	else if(sum[1]<21&&sum[0]<=21)	sum[2]=sum[1];
+	else sum[2]=sum[1]>sum[0]?sum[1]:sum[0];
+	if(sum[0]>21&&sum[1]>21)        cout<<"win";
+	else if(sun[0]>21&&sun[1]>21)   cout<<"lose";
+	else if(ns==2&&nbla1==1&&nbla2==1){
+			if(ms==2&&mbla1==1&&mbla2==1) cout<<"draw";
+			else cout<<"win";
+			}
+	else if(ms==2&&mbla1==1&&mbla2==1){
+			if(ns==2&&nbla1==1&&nbla2==1) cout<<"draw";
+			else cout<<"lose";
+			}
+	else if(sum[2]==sun[2]) cout<<"draw";
+	else if(sum[2]>sun[2]) cout<<"lose";
+	else if(sum[2]<sun[2]) cout<<"win";
+}
