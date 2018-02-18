@@ -1,0 +1,30 @@
+#include<stdio.h>
+#include<string.h>
+int main(){
+	int n,i,j,k,p,temp,max,l,o=0;
+	char gen1[25],gen2[25];
+	int an[102];
+	scanf("%d",&n);
+	
+	for(i=0;i<n;i++){	
+		
+		scanf("%s %s",gen1,gen2);
+		max=0;
+		for(j=0;j<strlen(gen1);j++){
+			for(k=0;k<strlen(gen2);k++){
+				temp=0;
+				for(l=k;l<strlen(gen2);l++){
+					if(gen1[j+temp]!=gen2[l]){
+						break;	
+					}
+					temp++;
+				}
+				if(temp>max) 
+					max=temp;
+			}
+		}
+		an[o++]=max;
+	}
+	for(i=0;i<n;i++)
+		printf("%d\n",an[i]);
+}
