@@ -1,0 +1,39 @@
+
+#include<iostream>
+//#include<cstring>
+#include<string.h>
+using namespace std;
+int main()
+{
+    int i,k,n;
+    float WBC,RBC,HGB,HCT,PLT;
+    char p[20];
+    cin>>k;
+    for(int i=0;i<k;i++)
+    { cin>>p;cin>>WBC>>RBC>>HGB>>HCT>>PLT;
+        n=0;
+        if(WBC<4.0||WBC>10.0)
+            n++;
+        if(RBC<3.5||RBC>5.5)
+            n++;
+        if(PLT<100||PLT>300)
+            n++;
+        if(strlen(p)==4)
+             {
+                 if(HGB<120||HGB>160)
+                    n++;
+                 if(HCT<42||HCT>48)
+                    n++;
+             }
+        if(strlen(p)==6)
+            {
+                if(HGB<110||HGB>150)
+                    n++;
+                 if(HCT<36||HCT>40)
+                    n++;
+            }
+    if(n==0)cout<<"normal"<<endl;
+     else cout<<n<<endl;
+    }
+    return 0;
+}
