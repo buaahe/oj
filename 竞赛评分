@@ -1,0 +1,44 @@
+#include<stdlib.h> 
+#include<iostream>
+#include<cstring>
+#include<string.h>
+using namespace std;
+
+typedef struct{
+	int NO;
+	int sum;
+}co;
+co cou[4];
+
+int com(const void*g,const void*h){
+	co* a=(co*)g;
+	co* b=(co*)h;
+	if(a->sum!=b->sum) return b->sum-a->sum;
+	else return a->NO-b->NO;
+}
+
+int main()
+{	
+    int n,m,i,j,k;
+	char a[4][20];
+    cin>>n;
+	for(i=0;i<n;i++){
+		for(j=1;j<4;j++){
+			cin>>a[j];
+			if(a[j][0]=='r') 
+				cou[j].sum+=10;
+    		else if(a[j][0]=='w') 
+    			cou[j].sum-=10;
+		}
+	}
+	for(i=1;i<4;i++)
+		cou[i].NO=i;
+    
+    qsort(cou+1,3,sizeof(cou[1]),com);
+
+    for(i=1;i<4;i++){
+    	printf("(%d,%d)",cou[i].NO,(cou[i].sum));
+    	if(cou[i+1].sum!=cou[i].sum||i==3)
+    		printf("\n");
+    }
+}
