@@ -1,0 +1,31 @@
+#include <iostream>
+#include <cstdio>
+#include <cstdlib>
+#include <cstring>
+using namespace std;
+const int N = 201;
+char s[N],a[N],b[N];
+char s1[N];
+int main() {
+    gets(s); gets(a); gets(b);
+    int t=0;
+    for (int i=0; s[i]!='\0'; i++){
+        if (s[i] == ' '){
+            s1[t]='\0'; //构造一个字符串 
+            t = 0;
+            if (strcmp(s1,a)==0) //判断一个单词 
+                cout<<b<<" ";
+            else
+                cout<<s1 <<" ";
+        }
+        else{
+            s1[t++] = s[i];
+        }
+    }
+    s1[t] = '\0'; 
+    if (strcmp(s1, a) == 0) //判断最后一个单词 
+        cout<<b<< endl;
+    else
+        cout<<s1<<endl;
+    return 0;   
+} 
