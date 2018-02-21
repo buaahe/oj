@@ -1,0 +1,36 @@
+#include <iostream>  
+#include <cstdio>  
+#include <algorithm>  
+using namespace std;  
+int main(){  
+    int n,m,i,j,k,a[100],b,step;
+   // menset(b,0,sizeof(int)*100)
+    cin>>n;
+    for(i=1;i<=n;i++)
+        cin>>a[i];
+    i=1;
+    a[0]=0;
+    step=1;
+ //   flag=1;
+    while(i<n+1){
+        if(a[i]==0){
+            i++;
+            step+=2;
+            if(i>n)
+                break;
+        }else if(a[i]+i<=0){
+            a[i]=0;
+            i=0;
+            step+=1;
+        }else if(a[i]+i>n){
+            step++;
+            break;
+        }else{
+        	b=i; 
+            i=a[i]+i;
+            step++;
+            a[b]=0;
+        }
+    }
+    printf("%d",step);
+} 
