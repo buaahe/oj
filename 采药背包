@@ -1,0 +1,18 @@
+#include<iostream>
+#include<algorithm>
+using namespace std;
+
+int main(){
+    int V,N,C[500],W[500],F[500][500]={0},i,v;
+    cin>>V>>N;
+    for(i=1;i<=N;i++)
+        cin>>C[i]>>W[i];      
+    for (i = 1; i <=N; i++)         
+        for(v = 1; v <=V; v++){
+            F[i][v] = F[i - 1][v];       
+            if (v - C[i] >= 0 && F[i][v] < F[i - 1][v - C[i]] + W[i])  
+                F[i][v] = F[i - 1][v - C[i]] + W[i];
+        }
+    cout <<F[N][V] << endl;  
+    return 0;
+}
